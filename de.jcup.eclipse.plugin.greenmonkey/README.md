@@ -1,0 +1,3 @@
+# Green Monkey
+
+Green monkey is eclipse plugin which mark all test parts in navigator, views, search results etc. with a (per default green) color. So it's easier to differ test parts and normal ones...
