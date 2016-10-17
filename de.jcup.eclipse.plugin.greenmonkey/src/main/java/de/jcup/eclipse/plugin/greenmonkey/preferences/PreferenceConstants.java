@@ -5,19 +5,44 @@ package de.jcup.eclipse.plugin.greenmonkey.preferences;
  */
 public class PreferenceConstants {
 
-	  // public static final String P_PATH = "pathPreference";
+	public static final String P_BOOLEAN__FILE_COLORING_ENABLED = "fileColorsEnabled";
 
-    public static final String P_BOOLEAN__USE_LONG_NAMES_FOR_CLIPBOARD = "useLongNamesForClipboard";
-    // public static final String P_BOOLEAN__COLORS_ENABLED= "colorsEnabled";
+	/**
+	 * Foreground color for test folders
+	 */
+	public static final String P_COLOR_TESTFOLDERS = "colorTestFolders";
 
-    public static final String P_BOOLEAN__FILE_COLORING_ENABLED = "fileColorsEnabled";
+	/**
+	 * Foreground color for test packages
+	 */
+	public static final String P_COLOR_TESTPACKAGES = "colorTestPackages";
 
-    public static final String P_COLOR_TESTFOLDERS = "colorTestFolders";
-    public static final String P_COLOR_MAINFOLDERS = "colorMainFolders";
-    public static final String P_COLOR_TESTFILES = "colorTestFiles";
+	/**
+	 * Foreground color for main folders
+	 */
+	public static final String P_COLOR_MAINFOLDERS = "colorMainFolders";
 
-    // public static final String P_CHOICE = "choicePreference";
-    //
-    // public static final String P_STRING = "stringPreference";
-	
+	/**
+	 * Foreground color for test files
+	 */
+	public static final String P_COLOR_TESTFILES = "colorTestFiles";
+
+	/**
+	 * Background color for test folders
+	 */
+	public static final String P_COLOR_TESTFOLDERS_BG = "colorTestFoldersBackground";
+	/**
+	 * Background color for main folders
+	 */
+	public static final String P_COLOR_MAINFOLDERS_BG = "colorMainFoldersBackground";
+	/**
+	 * Background color for test files
+	 */
+	public static final String P_COLOR_TESTFILES_BG = "colorTestFilesBackground";
+
+	/**
+	 * Foreground color for test packages
+	 */
+	public static final String P_COLOR_TESTPACKAGES_BG = "colorTestPackagesBackground";
+
 }

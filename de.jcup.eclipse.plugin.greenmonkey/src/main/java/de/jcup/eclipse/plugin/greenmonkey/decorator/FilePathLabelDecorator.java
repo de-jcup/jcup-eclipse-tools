@@ -36,6 +36,11 @@ public class FilePathLabelDecorator implements ILightweightLabelDecorator {
 
     private static List<FilePathLabelDecorator> instances = new ArrayList<FilePathLabelDecorator>();
     private static boolean fileColoringEnabled;
+	private static RGB rgbMainFolderBG;
+	private static RGB rgbTestPackageBG;
+	private static RGB rgbTestPackage;
+	private static RGB rgbTestFolderBG;
+	private static RGB rgbTestFileBG;
 
     public FilePathLabelDecorator() {
         listeners = new ArrayList<ILabelProviderListener>();
@@ -61,11 +66,19 @@ public class FilePathLabelDecorator implements ILightweightLabelDecorator {
 
     private static void reloadPreferences() {
         IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+        
         rgbTestFile = PreferenceConverter.getColor(store, PreferenceConstants.P_COLOR_TESTFILES);
+        rgbTestFileBG = PreferenceConverter.getColor(store, PreferenceConstants.P_COLOR_TESTFILES_BG);
 
         rgbTestFolder = PreferenceConverter.getColor(store, PreferenceConstants.P_COLOR_TESTFOLDERS);
+        rgbTestFolderBG = PreferenceConverter.getColor(store, PreferenceConstants.P_COLOR_TESTFOLDERS_BG);
+        
+        rgbTestPackage = PreferenceConverter.getColor(store, PreferenceConstants.P_COLOR_TESTPACKAGES);
+        rgbTestPackageBG = PreferenceConverter.getColor(store, PreferenceConstants.P_COLOR_TESTPACKAGES_BG);
+        
         rgbMainFolder = PreferenceConverter.getColor(store, PreferenceConstants.P_COLOR_MAINFOLDERS);
-
+        rgbMainFolderBG = PreferenceConverter.getColor(store, PreferenceConstants.P_COLOR_MAINFOLDERS_BG);
+        
         fileColoringEnabled = store.getBoolean(PreferenceConstants.P_BOOLEAN__FILE_COLORING_ENABLED);
     }
 
@@ -95,7 +108,7 @@ public class FilePathLabelDecorator implements ILightweightLabelDecorator {
         	if (resource!=null){
         		String portableString = resource.getFullPath().toPortableString();
         		if (isInTestFolderPath(portableString)){
-        			changeBackgroundWhenNotTooDark(decoration, cm, rgbTestFolder);
+        			changeColor(decoration, cm, rgbTestPackage, rgbTestPackageBG);
         		}
         	}
            return;
@@ -118,19 +131,23 @@ public class FilePathLabelDecorator implements ILightweightLabelDecorator {
         if (element instanceof IResource) {
             IResource resource = (IResource) element;
             if (isOneOfTheTestFolders(resource)) {
-                changeBackgroundWhenNotTooDark(decoration, cm, rgbTestFolder);
+                changeColor(decoration, cm, rgbTestFolder, rgbTestFolderBG);
             } else if (isTestFile(resource)) {
-                changeBackgroundWhenNotTooDark(decoration, cm, rgbTestFile);
+                changeColor(decoration, cm, rgbTestFile, rgbTestFileBG);
             } else if (isOneOfTheMainFolders(resource)) {
-                changeBackgroundWhenNotTooDark(decoration, cm, rgbMainFolder);
+                changeColor(decoration, cm, rgbMainFolder, rgbMainFolderBG);
             }
         }
 
     }
 
-    private void changeBackgroundWhenNotTooDark(IDecoration decoration, ColorManager cm, RGB color) {
+    private void changeColor(IDecoration decoration, ColorManager cm, RGB color, RGB backgroundColor) {
         if (isColorAccepted(color)) {
-            decoration.setBackgroundColor(cm.getColor(color));
+        	decoration.setForegroundColor(cm.getColor(color));
+        }
+        
+        if (isColorAccepted(backgroundColor)) {
+            decoration.setBackgroundColor(cm.getColor(backgroundColor));
         }
     }
 
@@ -191,8 +208,8 @@ public class FilePathLabelDecorator implements ILightweightLabelDecorator {
 
     private boolean isColorAccepted(RGB rgb) {
         int combined = rgb.red + rgb.blue + rgb.green;
-        if (combined < 100) {
-            /* too dark - not accepted */
+        if (combined == 0) {
+            /* black - not accepted */
             return false;
         }
         return true;

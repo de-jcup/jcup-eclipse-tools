@@ -5,7 +5,7 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            name="GreenMonkey"
+            name="Green Monkey"
             class="de.jcup.eclipse.plugin.greenmonkey.preferences.PreferencePage"
             id="de.jcup.eclipse.plugin.greenmonkey.preferences.GreenMonkeyPreferencePage">
       </page>
