@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Quick adopt
+Bundle-SymbolicName: de.jcup.eclipse.plugin.quickadopt;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: de.jcup.eclipse.plugin.quickadopt.Activator
+Bundle-Vendor: Albert Tregnaghi
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.core.filebuffers;bundle-version="3.6.0",
+ org.eclipse.core.filesystem;bundle-version="1.6.1"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.core.filebuffers,
+ org.eclipse.core.filesystem

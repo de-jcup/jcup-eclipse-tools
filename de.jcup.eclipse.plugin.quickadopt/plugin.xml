@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="Quick adopt"
+            id="de.jcup.eclipse.plugin.quickadopt.commands.category">
+      </category>
+      <command
+            category="Quick adopt"
+            categoryId="de.jcup.eclipse.plugin.quickadopt.commands.category"
+            id="de.jcup.eclipse.plugin.quickadopt.commands.sampleCommand"
+            name="Adopt maven structure">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="de.jcup.eclipse.plugin.quickadopt.commands.sampleCommand"
+            class="de.jcup.eclipse.plugin.quickadopt.handlers.AdoptMavenStructureHandler">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+         <!--
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               label="Quick adopt"
+               mnemonic="M"
+               id="de.jcup.eclipse.plugin.quickadopt.menus.sampleMenu">
+            <command
+                  commandId="de.jcup.eclipse.plugin.quickadopt.commands.sampleCommand"
+                  mnemonic="S"
+                  id="de.jcup.eclipse.plugin.quickadopt.menus.sampleCommand">
+            </command>
+         </menu>
+      </menuContribution>
+      -->
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="de.jcup.eclipse.plugin.quickadopt.toolbars.sampleToolbar">
+            <command
+                  commandId="de.jcup.eclipse.plugin.quickadopt.commands.sampleCommand"
+                  icon="icons/sample.gif"
+                  tooltip="Quick adopt maven structure parts"
+                  id="de.jcup.eclipse.plugin.quickadopt.toolbars.sampleCommand">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+   <!--
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IProject"
+            id="de.jcup.eclipse.plugin.quickadopt.contribution1">
+         <menu
+               label="Quick adopt"
+               path="additions"
+               id="de.jcup.eclipse.plugin.quickadopt.menu1">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               label="Adopt maven structure to single eclipse project"
+               class="de.jcup.eclipse.plugin.quickadopt.popup.actions.AdoptProjectMavenStructureAction"
+               menubarPath="de.jcup.eclipse.plugin.quickadopt.menu1/group1"
+               enablesFor="1"
+               id="de.jcup.eclipse.plugin.quickadopt.newAction">
+         </action>
+      </objectContribution>
+   </extension>
+	-->
+</plugin>
